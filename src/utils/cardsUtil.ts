@@ -6,17 +6,17 @@ import * as cardsRepository from "../repositories/cardsRepository.js";
 
 export async function ensureTitleDoesntExist(userId: number, title: string) {
     const card: Cards = await cardsRepository.getByTitleAndUserId(userId, title);
-    if(card) throw { type: "error_existing_card", message: "Card already exists." };
+    if(card) throw { type: "error_conflict", message: "Card already exists." };
 }
 
 export async function ensureCardExistsAndGetData(id: number) {
     const card: Cards = await cardsRepository.getById(id);
-    if(!card) throw { type: "error_non_existing_card", message: "Card doesnt exist." };
+    if(!card) throw { type: "error_not_found", message: "Card doesnt exist." };
     return card;
 }
 
 export function ensureUserIsHolder(cardUserId: number, userId: number) {
-    if(cardUserId !== userId) throw { type: "error_invalid_holder", message: "User is not card holder." };
+    if(cardUserId !== userId) throw { type: "error_unauthorized", message: "User is not card holder." };
 }
 
 export function generateDecryptedCard(card: Cards) {

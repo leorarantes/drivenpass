@@ -12,7 +12,7 @@ export async function validateToken(req, res, next) {
 
     try {
         const user: any = jwt.verify(token, process.env.JWT_SECRET);
-        res.locals.userId = user.id;
+        res.locals.id = user.id;
         next();
     } catch (e) {
         console.log(e);

@@ -1,8 +1,8 @@
-import joi, { string } from "joi";
+import joi from "joi";
 
 const userSchema = joi.object({
-    email: string().email(),
-    password: string().min(10)
+    email: joi.string().email(),
+    password: joi.string().min(10)
 });
 
 export default userSchema;

@@ -6,17 +6,17 @@ import * as credentialsRepository from "../repositories/credentialsRepository.js
 
 export async function ensureTitleDoesntExist(userId: number, title: string) {
     const credential = await credentialsRepository.getByTitleAndUserId(userId, title);
-    if(credential) throw { type: "error_existing_credential", message: "Credential already exists." };
+    if(credential) throw { type: "error_conflict", message: "Credential already exists." };
 }
 
 export async function ensureCredentialExistsAndGetData(id: number) {
     const credential: Credentials = await credentialsRepository.getById(id);
-    if(!credential) throw { type: "error_non_existing_credential", message: "Credential doesnt exist." };
+    if(!credential) throw { type: "error_not_found", message: "Credential doesnt exist." };
     return credential;
 }
 
-export function ensureUserIsAuthor(credentialUserId: number, userId: number) {
-    if(credentialUserId !== userId) throw { type: "error_invalid_author", message: "User is not credential author." };
+export function ensureUserIsHolder(credentialUserId: number, userId: number) {
+    if(credentialUserId !== userId) throw { type: "error_unauthorized", message: "User is not credential holder." };
 }
 
 export function generateDecryptedCredential(credential: Credentials) {

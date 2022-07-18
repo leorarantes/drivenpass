@@ -3,7 +3,7 @@ import Cryptr from 'cryptr';
 
 import "../setup.js";
 import { CredentialData } from "../utils/interfaces.js";
-import { ensureTitleDoesntExist, ensureCredentialExistsAndGetData, ensureUserIsAuthor, generateDecryptedCredential } from "../utils/credentialsUtil.js";
+import { ensureTitleDoesntExist, ensureCredentialExistsAndGetData, ensureUserIsHolder, generateDecryptedCredential } from "../utils/credentialsUtil.js";
 import * as credentialsRepository from "../repositories/credentialsRepository.js";
 
 export async function createOne(credential: CredentialData) {
@@ -32,7 +32,7 @@ export async function getAll(userId: number) {
 export async function getOne(userId: number, id: string) {
     const credential: Credentials = await ensureCredentialExistsAndGetData(parseInt(id));
 
-    ensureUserIsAuthor(credential.userId, userId);
+    ensureUserIsHolder(credential.userId, userId);
 
     const decryptedCredential: Credentials = generateDecryptedCredential(credential);
 
@@ -42,7 +42,7 @@ export async function getOne(userId: number, id: string) {
 export async function deleteOne(userId: number, id: string) {
     const credential: Credentials = await ensureCredentialExistsAndGetData(parseInt(id));
 
-    ensureUserIsAuthor(credential.userId, userId);
+    ensureUserIsHolder(credential.userId, userId);
 
     await credentialsRepository.deleteOne(credential.id);
 }

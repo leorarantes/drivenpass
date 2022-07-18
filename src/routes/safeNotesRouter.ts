@@ -7,9 +7,9 @@ import { createOne, getAll, getOne, deleteOne } from "../controllers/safeNotesCo
 
 const safeNotesRouter = Router();
 
-safeNotesRouter.post('/safeNotes', validateSchema(safeNoteSchema), validateToken, createOne);
-safeNotesRouter.get('/safeNotes', validateToken, getAll);
-safeNotesRouter.get('/safeNotes/:id', validateToken, getOne);
-safeNotesRouter.delete('/safeNotes/:id', validateToken, deleteOne);
+safeNotesRouter.post('/safe-notes', validateSchema(safeNoteSchema), validateToken, createOne);
+safeNotesRouter.get('/safe-notes', validateToken, getAll);
+safeNotesRouter.get('/safe-notes/:id', validateToken, getOne);
+safeNotesRouter.delete('/safe-notes/:id', validateToken, deleteOne);
 
 export default safeNotesRouter;

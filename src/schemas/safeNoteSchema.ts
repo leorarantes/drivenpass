@@ -1,8 +1,8 @@
-import joi, { string } from "joi";
+import joi from "joi";
 
 const safeNoteSchema = joi.object({
-    title: string().max(50),
-    note: string().max(1000)
+    title: joi.string().max(50),
+    note: joi.string().max(1000)
 });
 
 export default safeNoteSchema;
