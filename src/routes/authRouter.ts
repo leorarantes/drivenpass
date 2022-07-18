@@ -1,7 +1,6 @@
 import {Router} from "express";
 
 import { signUp, signIn } from "../controllers/authController.js";
-// import validateToken from "../middlewares/authValidator.js";
 import validateSchema from "../middlewares/validateSchema.js";
 import userSchema from "../schemas/userSchema.js";
 
