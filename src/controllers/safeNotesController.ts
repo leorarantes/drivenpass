@@ -1,31 +1,31 @@
-import { Credentials } from "@prisma/client";
 import { Request, Response } from "express";
+import { Safenotes } from "@prisma/client";
 
-import * as credentialsService from "../services/credentialsService.js";
+import * as safeNotesService from "../services/safeNotesService.js";
 
 export async function createOne(req: Request, res: Response) {
-    const credential = req.body;
+    const safeNote = req.body;
     const userId: number = res.locals.id;
-    await credentialsService.createOne({userId, ...credential});
+    await safeNotesService.createOne({userId, ...safeNote});
     res.sendStatus(200);
 };
 
 export async function getAll(req: Request, res: Response) {
     const userId: number = res.locals.id;
-    const credentials = await credentialsService.getAll(userId);
-    res.status(201).send(credentials);
+    const safeNotes = await safeNotesService.getAll(userId);
+    res.status(201).send(safeNotes);
 }
 
 export async function getOne(req: Request, res: Response) {
     const id: string = req.params.id;
     const userId: number = res.locals.id;
-    const credential: Credentials = await credentialsService.getOne(userId, id);
-    res.status(201).send(credential);
+    const safeNote: Safenotes = await safeNotesService.getOne(userId, id);
+    res.status(201).send(safeNote);
 }
 
 export async function deleteOne(req: Request, res: Response) {
     const id: string = req.params.id;
     const userId: number = res.locals.id;
-    await credentialsService.deleteOne(userId, id);
+    await safeNotesService.deleteOne(userId, id);
     res.sendStatus(200);
 };

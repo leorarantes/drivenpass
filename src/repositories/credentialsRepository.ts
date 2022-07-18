@@ -22,7 +22,7 @@ export async function getAll(userId: number) {
     return credentials;
 }
 
-export async function getById(id: number, ) {
+export async function getById(id: number) {
     const credential: Credentials = await prisma.credentials.findUnique({
         where: {
             id
