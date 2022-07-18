@@ -13,13 +13,14 @@ model Users {
   password    String
   credentials Credentials[]
   safeNotes   Safenotes[]
+  cards       Cards[]
 
   @@map("users")
 }
 
 model Credentials {
   id         Int       @id @default(autoincrement())
-  user       Users @relation(fields: [userId], references: [id])
+  user       Users     @relation(fields: [userId], references: [id])
   userId     Int
   url        String
   title      String
@@ -31,10 +32,27 @@ model Credentials {
 
 model Safenotes {
   id         Int       @id @default(autoincrement())
-  user       Users @relation(fields: [userId], references: [id])
+  user       Users     @relation(fields: [userId], references: [id])
   userId     Int
   title      String
   note       String
 
   @@map("safenotes")
+}
+
+model Cards {
+  id             Int       @id @default(autoincrement())
+  user           Users     @relation(fields: [userId], references: [id])
+  userId         Int
+  title          String
+  number         String    @unique
+  username       String
+  securityCode   String
+  expirationDate String
+  password       String
+  isVirtual      Boolean
+  debitEnabled   Boolean
+  creditEnabled  Boolean
+
+  @@map("cards")
 }

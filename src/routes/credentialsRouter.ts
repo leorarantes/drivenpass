@@ -5,11 +5,11 @@ import validateSchema from "../middlewares/validateSchema.js";
 import credentialSchema from "../schemas/credentialSchema.js";
 import { createOne, getAll, getOne, deleteOne } from "../controllers/credentialsController.js";
 
-const credentialRouter = Router();
+const credentialsRouter = Router();
 
-credentialRouter.post('/credentials', validateSchema(credentialSchema), validateToken, createOne);
-credentialRouter.get('/credentials', validateToken, getAll);
-credentialRouter.get('/credentials/:id', validateToken, getOne);
-credentialRouter.delete('/credentials/:id', validateToken, deleteOne);
+credentialsRouter.post('/credentials', validateSchema(credentialSchema), validateToken, createOne);
+credentialsRouter.get('/credentials', validateToken, getAll);
+credentialsRouter.get('/credentials/:id', validateToken, getOne);
+credentialsRouter.delete('/credentials/:id', validateToken, deleteOne);
 
-export default credentialRouter;
+export default credentialsRouter;

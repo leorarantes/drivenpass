@@ -12,7 +12,7 @@ export async function createOne(credential: CredentialData) {
     await ensureTitleDoesntExist(userId, title);
 
     // create encrypted password
-    const cryptr: Cryptr = new Cryptr(process.env.PASSWORD_KEY);
+    const cryptr: Cryptr = new Cryptr(process.env.CREDENTIALS_PASSWORD_KEY);
     const encryptedPassword: string = cryptr.encrypt(password);
 
     await credentialsRepository.insert(userId, url, title, username, encryptedPassword);

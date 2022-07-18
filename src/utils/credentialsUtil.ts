@@ -22,7 +22,7 @@ export function ensureUserIsAuthor(credentialUserId: number, userId: number) {
 export function generateDecryptedCredential(credential: Credentials) {
     const {id, userId, url, title, username, password}: Credentials = credential;
 
-    const cryptr: Cryptr = new Cryptr(process.env.PASSWORD_KEY);
+    const cryptr: Cryptr = new Cryptr(process.env.CREDENTIALS_PASSWORD_KEY);
     const decryptedPassword: string = cryptr.decrypt(password);
 
     return {
